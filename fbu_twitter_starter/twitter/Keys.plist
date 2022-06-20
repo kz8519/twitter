@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>test_key</key>
-	<string>test_val_changed</string>
+	<string>test_val_unchanged</string>
 </dict>
 </plist>
