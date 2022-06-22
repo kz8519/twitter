@@ -17,6 +17,7 @@
 - (IBAction)didTapLogout:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets; // Array of tweets
+@property (nonatomic, strong) UIRefreshControl *refreshControl; // Refresh control
 
 
 @end
@@ -29,7 +30,33 @@
     // Set data source and delegate to the view controller
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    [self fetchTweets];
         
+//    // Get timeline
+//    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+//        if (tweets) { // tweets is an array of Tweets, not dictionaries
+//
+//            NSLog(@"😎😎😎 Successfully loaded home timeline");
+//            for (Tweet *dictionary in tweets) {
+////            for (NSDictionary *dictionary in tweets) {
+////                NSString *text = dictionary.text;
+////                NSLog(@"%@", text);
+//            }
+//            self.arrayOfTweets = tweets;
+//            [self.tableView reloadData];
+//        } else {
+//            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+//        }
+//    }];
+    
+    // Implement refresh
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+}
+
+- (void)fetchTweets {
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) { // tweets is an array of Tweets, not dictionaries
@@ -45,6 +72,7 @@
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 
