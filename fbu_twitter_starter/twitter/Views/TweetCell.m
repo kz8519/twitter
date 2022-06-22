@@ -8,8 +8,100 @@
 
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "APIManager.h"
 
 @implementation TweetCell
+
+- (IBAction)didTapRetweet:(id)sender {
+    
+    // Update the local tweet model and cell UI
+    if ([sender isSelected]) { // from retweeted --> unretweeted
+        self.tweet.retweeted = NO;
+        self.tweet.retweetCount -= 1;
+        
+        [sender setTitle:@(self.tweet.retweetCount).stringValue forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+        
+        [sender setSelected:NO];
+        
+        // Send a POST request to the POST retweets/create endpoint
+        // Call the unretweet(completion:) method and pass in the tweet to be unretweeted.
+        [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
+             }
+         }];
+    }
+    else { // from unretweeted --> retweeted
+        self.tweet.retweeted = YES;
+        self.tweet.retweetCount += 1;
+        
+        [sender setTitle:@(self.tweet.retweetCount).stringValue forState:UIControlStateSelected];
+        [sender setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+        
+        [sender setSelected:YES];
+        
+        // Send a POST request to the POST retweets/create endpoint
+        // Call the retweet(completion:) method and pass in the tweet to be retweeted.
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
+             }
+         }];
+    }
+}
+
+- (IBAction)didTapFavorite:(id)sender {
+    
+    // Update the local tweet model and cell UI
+    if ([sender isSelected]) { // from favorited --> unfavorited
+        self.tweet.favorited = NO;
+        self.tweet.favoriteCount -= 1;
+        
+        [sender setTitle:@(self.tweet.favoriteCount).stringValue forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+        
+        [sender setSelected:NO];
+        
+        // Send a POST request to the POST favorites/create endpoint
+        // Call the unfavorite(completion:) method and pass in the tweet to be unfavorited.
+         [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error unfavoriting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
+             }
+         }];
+    }
+    else { // from unfavorited --> favorited
+        self.tweet.favorited = YES;
+        self.tweet.favoriteCount += 1;
+        
+        [sender setTitle:@(self.tweet.favoriteCount).stringValue forState:UIControlStateSelected];
+        [sender setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+        
+        [sender setSelected:YES];
+        
+        // Send a POST request to the POST favorites/create endpoint
+        // Call the favorite(completion:) method and pass in the tweet to be favorited.
+         [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+             if(error){
+                  NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+             }
+             else{
+                 NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+             }
+         }];
+    }
+}
+
 
 - (void)setTweet:(Tweet *)tweet {
     _tweet = tweet;
@@ -30,6 +122,12 @@
         
         self.profileView.image = [UIImage imageWithData:urlData];
     }
+    
+    // Set value for the favorite button
+    [self.favoriteButton setTitle:@(self.tweet.favoriteCount).stringValue forState:UIControlStateNormal];
+
+    // Set value for the retweet button
+    [self.retweetButton setTitle:@(self.tweet.retweetCount).stringValue forState:UIControlStateNormal];
 
 }
 

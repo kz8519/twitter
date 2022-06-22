@@ -18,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *timestampLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tweetTextLabel;
 @property (nonatomic, strong) Tweet *tweet; // For favoriting, retweeting & replying
+@property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (strong, nonatomic) IBOutlet UIButton *retweetButton;
+
+
+
 - (IBAction)favoriteBtn:(id)sender;
 - (IBAction)replyBtn:(id)sender;
 - (IBAction)retweenBtn:(id)sender;
