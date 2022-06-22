@@ -11,10 +11,11 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TweetCell.h"
-//#import "Tweet.h"
+#import "ComposeViewController.h"
 
-@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 - (IBAction)didTapLogout:(id)sender;
+//- (IBAction)didTapCompose:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets; // Array of tweets
 @property (nonatomic, strong) UIRefreshControl *refreshControl; // Refresh control
@@ -97,16 +98,32 @@
     return cell;
 }
 
-/*
+- (void)didTweet:(Tweet *)tweet {
+    
+    // Add new tweet to arrayOfTweets
+    [self.arrayOfTweets addObject:tweet];
+    
+    // Fetch all tweets (new one included)
+    [self fetchTweets];
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    UINavigationController *navigationController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+    composeController.delegate = self;
 }
-*/
 
+
+
+//- (IBAction)didTapCompose:(id)sender {
+//}
 
 - (IBAction)didTapLogout:(id)sender {
     // TimelineViewController.m
