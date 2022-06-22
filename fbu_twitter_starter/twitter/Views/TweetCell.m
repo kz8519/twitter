@@ -9,7 +9,7 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
-#import "DateTools.h"
+//#import "DateTools.h"
 
 @implementation TweetCell
 
@@ -112,12 +112,7 @@
     self.tweetTextLabel.text = self.tweet.text;
     
     // Set date
-    // https://stackoverflow.com/questions/9769190/create-a-nsdate-from-a-string
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MM/dd/yy";
-    NSDate *createdAtDate = [formatter dateFromString:self.tweet.createdAtString];
-    NSString *timeAgo = createdAtDate.shortTimeAgoSinceNow;
-    self.timestampLabel.text = timeAgo;
+    self.timestampLabel.text = self.tweet.createdAtString;
     
     // Set profile image
     // https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
