@@ -18,13 +18,19 @@
     self.screennameLabel.text = self.tweet.user.screenName;
     self.timestampLabel.text = self.tweet.createdAtString;
     self.tweetTextLabel.text = self.tweet.text;
-    self.profileView = nil;
+    
+    // set profile image
+    // https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
+    self.profileView.image = nil;
     if (self.tweet.user.profilePicture != nil) {
-        [self.profileView setImageWithURL:self.tweet.user.profilePicture];
+        
+        NSString *URLString = self.tweet.user.profilePicture;
+        NSURL *url = [NSURL URLWithString:URLString];
+        NSData *urlData = [NSData dataWithContentsOfURL:url];
+        
+        self.profileView.image = [UIImage imageWithData:urlData];
     }
-    
-    NSLog(@"%@", self.tweetTextLabel.text);
-    
+
 }
 
 
