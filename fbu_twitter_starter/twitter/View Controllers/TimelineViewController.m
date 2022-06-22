@@ -10,9 +10,14 @@
 #import "APIManager.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "TweetCell.h"
+//#import "Tweet.h"
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
 - (IBAction)didTapLogout:(id)sender;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *arrayOfTweets; // Array of tweets
+
 
 @end
 
@@ -21,14 +26,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Set data source and delegate to the view controller
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+        
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
-        if (tweets) {
+        if (tweets) { // tweets is an array of Tweets, not dictionaries
+
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-            for (NSDictionary *dictionary in tweets) {
-                NSString *text = dictionary[@"text"];
-                NSLog(@"%@", text);
+            for (Tweet *dictionary in tweets) {
+//            for (NSDictionary *dictionary in tweets) {
+//                NSString *text = dictionary.text;
+//                NSLog(@"%@", text);
             }
+            self.arrayOfTweets = tweets;
+            [self.tableView reloadData];
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
@@ -38,6 +51,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.arrayOfTweets.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: currently crashes
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    Tweet *tweet = self.arrayOfTweets[indexPath.row];
+
+    cell.tweet = tweet;
+    
+    return cell;
 }
 
 /*
