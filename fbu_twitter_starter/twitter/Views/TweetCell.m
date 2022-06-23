@@ -112,7 +112,8 @@
     self.tweetTextLabel.text = self.tweet.text;
     
     // Set date
-    self.timestampLabel.text = self.tweet.createdAtString;
+//    self.timestampLabel.text = self.tweet.createdAtString;
+    self.timestampLabel.text = self.tweet.timeCreatedAgo;
     
     // Set profile image
     // https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift

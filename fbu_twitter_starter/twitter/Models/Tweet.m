@@ -45,7 +45,7 @@
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
         // Convert String to Date
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
-        self.createdAtString = date.shortTimeAgoSinceNow;
+        self.timeCreatedAgo = date.shortTimeAgoSinceNow;
         
         /* TODO: original code (the line above is added code to replace this)
         // Configure output format

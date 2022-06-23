@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "TweetCell.h"
 #import "ComposeViewController.h"
+#import "DetailsViewController.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 - (IBAction)didTapLogout:(id)sender;
@@ -115,9 +116,22 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
+    if ([sender isKindOfClass: [UIBarButtonItem class]]) {
+        NSLog(@"%d", TRUE);
+        NSLog(@"%d", [sender isKindOfClass: [UIButton class]]);
+        // Segue to ComposeViewController so user can compose tweets
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+    }
+    else if ([sender isKindOfClass: [TweetCell class]]) {
+        // Segue to DetailsViewController so user can view tweet details
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        Tweet *dataToPass = self.arrayOfTweets[indexPath.row];
+        DetailsViewController *detailVC = [segue destinationViewController];
+        detailVC.tweet = dataToPass;
+    }
+
 }
 
 
