@@ -58,6 +58,10 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self fetchTweets];
+}
+
 - (void)fetchTweets {
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
@@ -90,7 +94,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: currently crashes
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
 
