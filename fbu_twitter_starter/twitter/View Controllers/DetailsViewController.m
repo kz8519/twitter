@@ -50,8 +50,19 @@
         self.profileView.image = [UIImage imageWithData:urlData];
     }
     
+    /*
     // Set value for the favorite button
     [self.favoriteButton setTitle:@(self.tweet.favoriteCount).stringValue forState:UIControlStateNormal];
+     */
+    
+    // Set value for the favorite button
+    [self.favoriteButton setTitle:@(self.tweet.favoriteCount).stringValue forState:self.favoriteButton.state];
+    if (self.tweet.favorited) {
+        [self.favoriteButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:self.favoriteButton.state];
+    }
+    else {
+        [self.favoriteButton setImage:[UIImage imageNamed:@"favor-icon"] forState:self.favoriteButton.state];
+    }
 
     // Set value for the retweet button
     [self.retweetButton setTitle:@(self.tweet.retweetCount).stringValue forState:UIControlStateNormal];
@@ -70,7 +81,7 @@
 - (IBAction)didTapFavorite:(id)sender {
     
     // Update the local tweet model and cell UI
-    if ([sender isSelected]) { // from favorited --> unfavorited
+    if (self.tweet.favorited) { // from favorited --> unfavorited
         self.tweet.favorited = NO;
         self.tweet.favoriteCount -= 1;
         
