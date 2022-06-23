@@ -47,19 +47,13 @@
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
         self.timeCreatedAgo = date.shortTimeAgoSinceNow;
         
-        /* TODO: original code (the line above is added code to replace this)
+        // TODO: original code below (the line above is added code to replace this)
         // Configure output format
         formatter.dateStyle = NSDateFormatterShortStyle;
         formatter.timeStyle = NSDateFormatterNoStyle;
 
-        // Convert Date to String <-- TODO: original code
+        // Convert Date to String
         self.createdAtString = [formatter stringFromDate:date];
-        
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"MM/dd/yy";
-        NSDate *createdAtDate = [formatter dateFromString:self.tweet.createdAtString];
-        NSString *timeAgo = createdAtDate.shortTimeAgoSinceNow;
-         */
     }
     return self;
 }
