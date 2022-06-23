@@ -40,7 +40,7 @@
 - (IBAction)didTapRetweet:(id)sender {
     
     // Update the local tweet model and cell UI
-    if ([sender isSelected]) { // from retweeted --> unretweeted
+    if (self.tweet.retweeted) { // from retweeted --> unretweeted
         self.tweet.retweeted = NO;
         self.tweet.retweetCount -= 1;
         
@@ -65,7 +65,7 @@
         self.tweet.retweetCount += 1;
         
         [sender setTitle:@(self.tweet.retweetCount).stringValue forState:UIControlStateSelected];
-        [sender setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateSelected];
         
         [sender setSelected:YES];
         
@@ -163,10 +163,16 @@
     }
 
     // Set value for the retweet button
-    [self.retweetButton setTitle:@(self.tweet.retweetCount).stringValue forState:UIControlStateNormal];
+    [self.retweetButton setTitle:@(self.tweet.retweetCount).stringValue forState:self.retweetButton.state];
+    if (self.tweet.retweeted) {
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:self.retweetButton.state];
+    }
+    else {
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:self.retweetButton.state];
+    }
     
     // Set value for the reply button
-    [self.replyButton setTitle:@(self.tweet.replyCount).stringValue forState:UIControlStateNormal];
+    [self.replyButton setTitle:@(self.tweet.replyCount).stringValue forState:self.replyButton.state];
 
 }
 
