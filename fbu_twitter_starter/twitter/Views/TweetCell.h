@@ -20,12 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) Tweet *tweet; // For favoriting, retweeting & replying
 @property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (strong, nonatomic) IBOutlet UIButton *retweetButton;
-
-
-
-- (IBAction)favoriteBtn:(id)sender;
-- (IBAction)replyBtn:(id)sender;
-- (IBAction)retweenBtn:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *replyButton;
 
 
 @end
