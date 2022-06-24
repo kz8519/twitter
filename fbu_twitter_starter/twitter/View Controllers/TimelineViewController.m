@@ -138,10 +138,6 @@
 }
 
 
-
-//- (IBAction)didTapCompose:(id)sender {
-//}
-
 - (IBAction)didTapLogout:(id)sender {
     // TimelineViewController.m
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;

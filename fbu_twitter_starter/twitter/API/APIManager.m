@@ -155,4 +155,20 @@ static NSString * const baseURLString = @"https://api.twitter.com";
     }];
 }
 
+- (void)getProfilePicture:(void (^)(NSString *, NSError *))completion {
+    
+    // Create a GET Request
+    NSDictionary *parameters = @{@"user.fields": @"profile_image_url"};
+    [self GET:@"2/users/me"
+       parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable resultDict) {
+        // Success
+        NSString *URLString = resultDict[@"data"][@"profile_image_url"];
+        completion(URLString, nil);
+       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+           // There was a problem
+           completion(nil, error);
+    }];
+
+}
+
 @end

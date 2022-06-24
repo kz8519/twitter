@@ -398,17 +398,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Compose tweet" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pc9-M8-cSR">
-                                <rect key="frame" x="0.0" y="62" width="375" height="180"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Compose tweet" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pc9-M8-cSR">
+                                <rect key="frame" x="76" y="62" width="289" height="575"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EJj-O4-As9">
+                                <rect key="frame" x="16" y="62" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Afa-yR-R6P"/>
+                                    <constraint firstAttribute="height" constant="50" id="bD4-IW-3mK"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FMp-kj-p1p"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FMp-kj-p1p" firstAttribute="bottom" secondItem="pc9-M8-cSR" secondAttribute="bottom" constant="10" id="1Ap-im-YFe"/>
+                            <constraint firstItem="EJj-O4-As9" firstAttribute="leading" secondItem="FMp-kj-p1p" secondAttribute="leading" constant="16" id="PV3-Xa-1Rj"/>
+                            <constraint firstItem="pc9-M8-cSR" firstAttribute="leading" secondItem="EJj-O4-As9" secondAttribute="trailing" constant="10" id="Ruu-6M-Okx"/>
+                            <constraint firstItem="EJj-O4-As9" firstAttribute="top" secondItem="FMp-kj-p1p" secondAttribute="top" constant="6" id="ZQy-Mb-13Z"/>
+                            <constraint firstItem="pc9-M8-cSR" firstAttribute="top" secondItem="EJj-O4-As9" secondAttribute="top" id="oSt-nc-RQP"/>
+                            <constraint firstItem="FMp-kj-p1p" firstAttribute="trailing" secondItem="pc9-M8-cSR" secondAttribute="trailing" constant="10" id="yHm-ox-eJy"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Compose Tweet" id="kfO-Cj-dfL">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="Fop-Tl-urL">
@@ -423,12 +437,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="profileView" destination="EJj-O4-As9" id="xLn-0N-OFA"/>
                         <outlet property="textView" destination="pc9-M8-cSR" id="UAG-mF-TcT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rdy-Ol-xAB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3521" y="36"/>
+            <point key="canvasLocation" x="3520.8000000000002" y="35.532233883058474"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3wL-5g-Cfj">
