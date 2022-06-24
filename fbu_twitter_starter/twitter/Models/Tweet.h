@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *createdAtString; // Display date
 @property (nonatomic, strong) NSString *timeCreatedAgo; // Display amount of time ago the tweet was created
 
-@property (nonatomic) int replyCount; // Update reply count label
+//@property (nonatomic) int replyCount; // Update reply count label
 
 
 // For Retweets

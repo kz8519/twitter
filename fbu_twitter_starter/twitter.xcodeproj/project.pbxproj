@@ -23,6 +23,7 @@
 		EE57A26328613C1E00B30625 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE57A26228613C1E00B30625 /* TweetCell.m */; };
 		EE82B84F2863779C003D31D0 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE82B84E2863779C003D31D0 /* ComposeViewController.m */; };
 		EE82B8522863DEF4003D31D0 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE82B8512863DEF4003D31D0 /* DetailsViewController.m */; };
+		EE82B85B286619ED003D31D0 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE82B85A286619ED003D31D0 /* ReplyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		EE82B84E2863779C003D31D0 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		EE82B8502863DEF4003D31D0 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		EE82B8512863DEF4003D31D0 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		EE82B859286619ED003D31D0 /* ReplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplyViewController.h; sourceTree = "<group>"; };
+		EE82B85A286619ED003D31D0 /* ReplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 				EE82B84E2863779C003D31D0 /* ComposeViewController.m */,
 				EE82B8502863DEF4003D31D0 /* DetailsViewController.h */,
 				EE82B8512863DEF4003D31D0 /* DetailsViewController.m */,
+				EE82B859286619ED003D31D0 /* ReplyViewController.h */,
+				EE82B85A286619ED003D31D0 /* ReplyViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				EE57A26328613C1E00B30625 /* TweetCell.m in Sources */,
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				EE82B8522863DEF4003D31D0 /* DetailsViewController.m in Sources */,
+				EE82B85B286619ED003D31D0 /* ReplyViewController.m in Sources */,
 				EE57A25D28612FC600B30625 /* User.m in Sources */,
 				EE82B84F2863779C003D31D0 /* ComposeViewController.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,

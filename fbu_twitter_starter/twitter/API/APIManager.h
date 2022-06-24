@@ -25,6 +25,7 @@
 - (void)unretweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
 
 - (void)getProfilePicture:(void(^)(NSString *URLString, NSError *error))completion;
+- (void)postReplyWithText:(Tweet *)tweet :(NSString *)text completion:(void (^)(Tweet *, NSError *))completion;
 
 
 

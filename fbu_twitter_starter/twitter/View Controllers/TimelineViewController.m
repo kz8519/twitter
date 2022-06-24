@@ -112,6 +112,7 @@
 }
 
 
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -120,8 +121,6 @@
     // Pass the selected object to the new view controller.
     
     if ([sender isKindOfClass: [UIBarButtonItem class]]) {
-        NSLog(@"%d", TRUE);
-        NSLog(@"%d", [sender isKindOfClass: [UIButton class]]);
         // Segue to ComposeViewController so user can compose tweets
         UINavigationController *navigationController = [segue destinationViewController];
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;

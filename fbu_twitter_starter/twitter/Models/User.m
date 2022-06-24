@@ -19,6 +19,7 @@
         self.screenName = [NSString stringWithFormat:@"%@%@", @"@", dictionary[@"screen_name"]];
         self.profilePicture = dictionary[@"profile_image_url_https"];
         // Initialize any other properties
+        self.idStr = dictionary[@"id_str"];
     }
     return self;
 }

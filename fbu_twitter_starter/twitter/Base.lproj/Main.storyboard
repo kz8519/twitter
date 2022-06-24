@@ -132,9 +132,6 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="reply-icon"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="reply-icon" title=" "/>
-                                                    <connections>
-                                                        <action selector="didTapReply:" destination="pMY-3c-va7" eventType="touchUpInside" id="Qk4-pf-e7w"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nid-30-dpE">
                                                     <rect key="frame" x="79" y="11" width="47.5" height="15"/>
@@ -288,6 +285,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="reply-icon" title=" "/>
+                                        <connections>
+                                            <segue destination="CxI-f1-Mm2" kind="presentation" id="4p0-aB-V6I"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJh-2i-FtE">
                                         <rect key="frame" x="171" y="541" width="58" height="40"/>
@@ -361,6 +361,7 @@
                     <connections>
                         <outlet property="favoriteButton" destination="9rR-ay-ma5" id="wjP-2F-mnn"/>
                         <outlet property="profileView" destination="LMh-Pr-meB" id="Jw9-fm-CCG"/>
+                        <outlet property="replyButton" destination="7ih-4w-O0S" id="W5d-r8-V0Q"/>
                         <outlet property="retweetButton" destination="CJh-2i-FtE" id="0Uo-5B-u3h"/>
                         <outlet property="screennameLabel" destination="dTm-af-MoV" id="Kd4-dw-lFs"/>
                         <outlet property="timestampLabel" destination="ptq-Uf-DIX" id="b8D-jx-Yvf"/>
@@ -445,6 +446,46 @@
             </objects>
             <point key="canvasLocation" x="3520.8000000000002" y="35.532233883058474"/>
         </scene>
+        <!--Compose Reply-->
+        <scene sceneID="fPI-T3-2Ln">
+            <objects>
+                <viewController id="jgx-aK-s9c" customClass="ReplyViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VDP-Sa-qJb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="At5-WY-WSu">
+                                <rect key="frame" x="67" y="56" width="292" height="541"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5oP-WK-Uxg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Compose Reply" id="AlP-pN-Jax">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="Pel-7L-Jx9">
+                            <connections>
+                                <action selector="didTapClose:" destination="jgx-aK-s9c" id="8sp-2L-nJB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Reply" id="xcN-Fq-71e">
+                            <connections>
+                                <action selector="didTapReply:" destination="jgx-aK-s9c" id="Wn2-av-mCa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="At5-WY-WSu" id="1jU-UP-4Lq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xds-Hb-mre" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3520.8000000000002" y="833.43328335832086"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="3wL-5g-Cfj">
             <objects>
@@ -462,6 +503,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11k-Hu-smV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2558" y="36"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VJM-WQ-pam">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CxI-f1-Mm2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EUe-kW-jJV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jgx-aK-s9c" kind="relationship" relationship="rootViewController" id="Wah-Nl-cV4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4xt-fa-UvM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2558" y="834"/>
         </scene>
     </scenes>
     <resources>

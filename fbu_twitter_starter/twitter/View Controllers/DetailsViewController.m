@@ -9,9 +9,10 @@
 #import "DetailsViewController.h"
 #import "Tweet.h"
 #import "APIManager.h"
+#import "ReplyViewController.h"
 
 
-@interface DetailsViewController ()
+@interface DetailsViewController () <ReplyViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *profileView;
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *screennameLabel;
@@ -20,6 +21,7 @@
 //@property (nonatomic, strong) Tweet *tweet; // For favoriting, retweeting & replying
 @property (strong, nonatomic) IBOutlet UIButton *retweetButton;
 @property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
+@property (strong, nonatomic) IBOutlet UIButton *replyButton;
 
 
 @end
@@ -75,17 +77,41 @@
     else {
         [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:self.retweetButton.state];
     }
+    
+    // Set value for the retweet button
+//    [self.replyButton setTitle:@(self.tweet.replyCount).stringValue forState:self.replyButton.state];
+//    if (self.tweet.replied) {
+//        [self.replyButton setImage:[UIImage imageNamed:@"reply-icon-blue"] forState:self.replyButton.state];
+//    }
+//    else {
+//        [self.replyButton setImage:[UIImage imageNamed:@"reply-icon"] forState:self.replyButton.state];
+//    }
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([sender isKindOfClass: [UIButton class]]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        ReplyViewController *replyController = (ReplyViewController*)navigationController.topViewController;
+        replyController.delegate = self;
+//        replyController.user = self.tweet.user;
+        replyController.tweet = self.tweet;
+
+//        NSLog(@"%@", replyController.user.screenName);
+
+    }
 }
-*/
+
+
+- (void) didReply: (Tweet *)tweet {
+    [self viewDidLoad];
+}
 
 - (IBAction)didTapFavorite:(id)sender {
     

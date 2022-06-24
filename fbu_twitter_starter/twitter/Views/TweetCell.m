@@ -13,30 +13,6 @@
 
 @implementation TweetCell
 
-- (IBAction)didTapReply:(id)sender {
-    // Update the local tweet model and cell UI
-    self.tweet.replyCount += 1;
-    
-    [sender setTitle:@(self.tweet.replyCount).stringValue forState:UIControlStateNormal];
-    
-    // TODO: goes blue and then opens modal to post reply
-    [sender setImage:[UIImage imageNamed:@"reply-icon-blue"] forState:UIControlStateNormal];
-
-    // TODO: Send a POST request to the POST retweets/create endpoint (steps 5 and 6)
-    /*
-    // Call the unretweet(completion:) method and pass in the tweet to be unretweeted.
-    [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
-         if(error){
-              NSLog(@"Error unretweeting tweet: %@", error.localizedDescription);
-         }
-         else{
-             NSLog(@"Successfully unretweeted the following Tweet: %@", tweet.text);
-         }
-     }];
-     */
-   
-}
-
 - (IBAction)didTapRetweet:(id)sender {
     
     // Update the local tweet model and cell UI
@@ -172,7 +148,7 @@
     }
     
     // Set value for the reply button
-    [self.replyButton setTitle:@(self.tweet.replyCount).stringValue forState:self.replyButton.state];
+//    [self.replyButton setTitle:@(self.tweet.replyCount).stringValue forState:self.replyButton.state];
 
 }
 
