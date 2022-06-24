@@ -13,6 +13,7 @@
 - (IBAction)didTapClose:(id)sender;
 - (IBAction)didTapReply:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet UIImageView *profileView;
 
 
 
@@ -24,7 +25,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    NSLog(@"%@", self.user.screenName);
+    // Set profile image
+    // TODO: https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
+    self.profileView.image = nil;
+
+    [[APIManager shared] getProfilePicture:^(NSString *URLString, NSError *error) {
+        if (URLString) {
+            NSLog(@"😎😎😎 Successfully loaded profile picture");
+            NSURL *url = [NSURL URLWithString:URLString];
+            NSData *urlData = [NSData dataWithContentsOfURL:url];
+            
+            self.profileView.image = [UIImage imageWithData:urlData];
+        } else {
+            NSLog(@"😫😫😫 Error getting profile picture: %@", error.localizedDescription);
+        }
+    }];
+    
 }
 
 /*
