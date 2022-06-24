@@ -12,6 +12,7 @@
 @interface ComposeViewController () <UITextViewDelegate> // Implementing character count
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIImageView *profileView;
+@property (strong, nonatomic) IBOutlet UILabel *charCountLabel;
 - (IBAction)didTapClose:(id)sender;
 - (IBAction)didTapTweet:(id)sender;
 
@@ -58,7 +59,28 @@
 //    NSLog(@"%@", newText);
 //    NSLog(@"%@", range);
 
-    // TODO: Update character count label
+    // Update character count label
+    if (newText.length <= characterLimit) {
+        self.charCountLabel.text = [NSString stringWithFormat:@"%lu", newText.length];
+    }
+    else {
+        self.charCountLabel.text = [NSString stringWithFormat:@"%d", characterLimit];
+        
+        // Create UIAlertController
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Character Limit Reached"
+                                                     message:@"You have reached the 280 character limit."
+                                                     preferredStyle:(UIAlertControllerStyleAlert)];
+        // Create "OK" action + button
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Okay"
+                                                     style:UIAlertActionStyleCancel
+                                                     handler:^(UIAlertAction * _Nonnull action) {}];
+        // add the "OK" action to the alertController
+        [alert addAction:okAction];
+        
+        // Show UIAlertController
+        [self presentViewController:alert animated:YES completion:^{
+        }];
+    }
 
     // Should the new text should be allowed? True/False
     return newText.length <= characterLimit;
