@@ -20,6 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *idStr; // For favoriting, retweeting & replying
 
 // Add any additional properties here
+@property (nonatomic, strong) NSString *tagline;
+@property (nonatomic, strong) NSString *numTweets;
+@property (nonatomic, strong) NSString *numFollowing;
+@property (nonatomic, strong) NSString *numFollowers;
+@property (nonatomic, strong) NSString *bannerPicture;
+
+
 
 // Create initializer
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;

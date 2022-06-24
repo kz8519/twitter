@@ -8,6 +8,7 @@
 
 #import "ComposeViewController.h"
 #import "APIManager.h"
+#import <UITextView+Placeholder/UITextView+Placeholder.h>
 
 @interface ComposeViewController () <UITextViewDelegate> // Implementing character count
 @property (strong, nonatomic) IBOutlet UITextView *textView;
@@ -26,6 +27,8 @@
     
     // Implementing character count
     self.textView.delegate = self;
+    
+    self.textView.placeholder = @"What's happening?";
     
     // Set profile image
     // TODO: https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift

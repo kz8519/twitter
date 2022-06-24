@@ -8,6 +8,8 @@
 
 #import "ReplyViewController.h"
 #import "APIManager.h"
+#import <UITextView+Placeholder/UITextView+Placeholder.h>
+
 
 @interface ReplyViewController ()
 - (IBAction)didTapClose:(id)sender;
@@ -24,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.textView.placeholder = @"Tweet your reply";
     
     // Set profile image
     // TODO: https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift

@@ -13,8 +13,9 @@
 #import "TweetCell.h"
 #import "ComposeViewController.h"
 #import "DetailsViewController.h"
+#import "ProfileViewController.h"
 
-@interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface TimelineViewController () <ComposeViewControllerDelegate, TweetCellDelegate, UITableViewDelegate, UITableViewDataSource>
 - (IBAction)didTapLogout:(id)sender;
 //- (IBAction)didTapCompose:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -98,6 +99,7 @@
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
 
     cell.tweet = tweet;
+    cell.delegate = self;
     
     return cell;
 }
@@ -133,9 +135,20 @@
         DetailsViewController *detailVC = [segue destinationViewController];
         detailVC.tweet = dataToPass;
     }
+    else if ([segue.identifier isEqualToString:@"profileSegue"]) {
+//        UINavigationController *navigationController = [segue destinationViewController];
+//        ProfileViewController *profileController = (ProfileViewController*)navigationController.topViewController;
+        ProfileViewController *profileController = [segue destinationViewController];
+        profileController.user = sender;
+    }
 
 }
 
+- (void)tweetCell:(TweetCell *)tweetCell didTap:(User *)user{
+    // Perform segue to profile view controller
+    [self performSegueWithIdentifier:@"profileSegue" sender:user];
+
+}
 
 - (IBAction)didTapLogout:(id)sender {
     // TimelineViewController.m

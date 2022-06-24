@@ -152,16 +152,28 @@
 
 }
 
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    // Instantiate and set the target-action.
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    
+    // Attach the gesture recognizer to the profile image view and make sure it can receive touches (userInteraction).
+    [self.profileView addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profileView setUserInteractionEnabled:YES];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void) didTapUserProfile:(UITapGestureRecognizer *)sender{
+    // Call method delegate
+    [self.delegate tweetCell:self didTap:self.tweet.user];
 }
 
 @end
