@@ -17,7 +17,6 @@
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, TweetCellDelegate, UITableViewDelegate, UITableViewDataSource>
 - (IBAction)didTapLogout:(id)sender;
-//- (IBAction)didTapCompose:(id)sender;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets; // Array of tweets
 @property (nonatomic, strong) UIRefreshControl *refreshControl; // Refresh control
@@ -35,23 +34,6 @@
     self.tableView.delegate = self;
     
     [self fetchTweets];
-        
-//    // Get timeline
-//    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
-//        if (tweets) { // tweets is an array of Tweets, not dictionaries
-//
-//            NSLog(@"😎😎😎 Successfully loaded home timeline");
-//            for (Tweet *dictionary in tweets) {
-////            for (NSDictionary *dictionary in tweets) {
-////                NSString *text = dictionary.text;
-////                NSLog(@"%@", text);
-//            }
-//            self.arrayOfTweets = tweets;
-//            [self.tableView reloadData];
-//        } else {
-//            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
-//        }
-//    }];
     
     // Implement refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -69,11 +51,6 @@
         if (tweets) { // tweets is an array of Tweets, not dictionaries
 
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-            for (Tweet *dictionary in tweets) {
-//            for (NSDictionary *dictionary in tweets) {
-//                NSString *text = dictionary.text;
-//                NSLog(@"%@", text);
-            }
             self.arrayOfTweets = tweets;
             [self.tableView reloadData];
         } else {
@@ -136,8 +113,6 @@
         detailVC.tweet = dataToPass;
     }
     else if ([segue.identifier isEqualToString:@"profileSegue"]) {
-//        UINavigationController *navigationController = [segue destinationViewController];
-//        ProfileViewController *profileController = (ProfileViewController*)navigationController.topViewController;
         ProfileViewController *profileController = [segue destinationViewController];
         profileController.user = sender;
     }
@@ -151,7 +126,6 @@
 }
 
 - (IBAction)didTapLogout:(id)sender {
-    // TimelineViewController.m
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

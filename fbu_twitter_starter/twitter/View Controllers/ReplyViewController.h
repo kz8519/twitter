@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
-//#import "User.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ReplyViewController : UIViewController
 @property (nonatomic, weak) id<ReplyViewControllerDelegate> delegate;
-//@property (nonatomic, strong) User *user; // For favoriting, retweeting & replying
 @property (nonatomic, strong) Tweet *tweet; // For favoriting, retweeting & replying
 
 

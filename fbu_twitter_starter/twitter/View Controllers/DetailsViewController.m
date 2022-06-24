@@ -18,7 +18,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *screennameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tweetTextLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timestampLabel;
-//@property (nonatomic, strong) Tweet *tweet; // For favoriting, retweeting & replying
 @property (strong, nonatomic) IBOutlet UIButton *retweetButton;
 @property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (strong, nonatomic) IBOutlet UIButton *replyButton;
@@ -38,10 +37,8 @@
     
     // Set date
     self.timestampLabel.text = self.tweet.createdAtString;
-//    self.timestampLabel.text = self.tweet.timeCreatedAgo;
     
     // Set profile image
-    // https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
     self.profileView.image = nil;
     if (self.tweet.user.profilePicture != nil) {
         
@@ -51,14 +48,6 @@
         
         self.profileView.image = [UIImage imageWithData:urlData];
     }
-    
-    /*
-    // Set value for the favorite button
-    [self.favoriteButton setTitle:@(self.tweet.favoriteCount).stringValue forState:UIControlStateNormal];
-     
-     // Set value for the retweet button
-     [self.retweetButton setTitle:@(self.tweet.retweetCount).stringValue forState:UIControlStateNormal];
-     */
     
     // Set value for the favorite button
     [self.favoriteButton setTitle:@(self.tweet.favoriteCount).stringValue forState:self.favoriteButton.state];
@@ -77,15 +66,6 @@
     else {
         [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:self.retweetButton.state];
     }
-    
-    // Set value for the retweet button
-//    [self.replyButton setTitle:@(self.tweet.replyCount).stringValue forState:self.replyButton.state];
-//    if (self.tweet.replied) {
-//        [self.replyButton setImage:[UIImage imageNamed:@"reply-icon-blue"] forState:self.replyButton.state];
-//    }
-//    else {
-//        [self.replyButton setImage:[UIImage imageNamed:@"reply-icon"] forState:self.replyButton.state];
-//    }
 }
 
 
@@ -100,11 +80,7 @@
         UINavigationController *navigationController = [segue destinationViewController];
         ReplyViewController *replyController = (ReplyViewController*)navigationController.topViewController;
         replyController.delegate = self;
-//        replyController.user = self.tweet.user;
         replyController.tweet = self.tweet;
-
-//        NSLog(@"%@", replyController.user.screenName);
-
     }
 }
 

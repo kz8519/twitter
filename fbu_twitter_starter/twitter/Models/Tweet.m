@@ -47,7 +47,6 @@
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
         self.timeCreatedAgo = date.shortTimeAgoSinceNow;
         
-        // TODO: original code below (the line above is added code to replace this)
         // Configure output format
         formatter.dateStyle = NSDateFormatterShortStyle;
         formatter.timeStyle = NSDateFormatterNoStyle;

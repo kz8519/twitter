@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    NSLog(@"%@", self.user.screenName);
+
     self.usernameLabel.text = self.user.name;
     self.screenNameLabel.text = self.user.screenName;
     self.taglineLabel.text = self.user.tagline;
@@ -34,7 +34,6 @@
     self.numFollowersLabel.text = [self.user.numFollowers stringByAppendingString:@" followers"];
     
     // Set profile and banner image
-    // https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
     self.profileView.image = nil;
     if (self.user.profilePicture != nil) {
         

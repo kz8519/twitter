@@ -31,7 +31,6 @@
     self.textView.placeholder = @"What's happening?";
     
     // Set profile image
-    // TODO: https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
     self.profileView.image = nil;
 
     [[APIManager shared] getProfilePicture:^(NSString *URLString, NSError *error) {
@@ -57,10 +56,6 @@
     // Construct what the new text would be if we allowed the user's latest edit
     // range has length 0 if referring to current insertion point (1 for each character we wish to delete)
     NSString *newText = [self.textView.text stringByReplacingCharactersInRange:range withString:text];
-    
-//    NSLog(@"%@", text);
-//    NSLog(@"%@", newText);
-//    NSLog(@"%@", range);
 
     // Update character count label
     if (newText.length <= characterLimit) {
@@ -100,20 +95,6 @@
 }
 */
 
-/*
-- (void) composeTweet(completion:) {
-    [[APIManager shared]postStatusWithText:@"This is my tweet 😀" completion:^(Tweet *tweet, NSError *error) {
-        if(error){
-            NSLog(@"Error composing Tweet: %@", error.localizedDescription);
-        }
-        else{
-            [self.delegate didTweet:tweet];
-            NSLog(@"Compose Tweet Success!");
-        }
-    }];
-}
- */
-
 - (IBAction)didTapTweet:(id)sender { //equivalent to didTapPost in the instructions
     
     [[APIManager shared]postStatusWithText:self.textView.text completion:^(Tweet *tweet, NSError *error) {
@@ -127,8 +108,6 @@
         // Dismiss ComposeViewController
         [self didTapClose:(sender)];
     }];
-    
-//    [self composeTweet];
 }
 
 - (IBAction)didTapClose:(id)sender {

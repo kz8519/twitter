@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProfileViewController : UIViewController
-@property (nonatomic, strong) User *user; // For favoriting, retweeting & replying
+@property (nonatomic, strong) User *user;
 
 @end
 

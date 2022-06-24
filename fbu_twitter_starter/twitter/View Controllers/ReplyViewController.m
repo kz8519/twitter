@@ -30,7 +30,6 @@
     self.textView.placeholder = @"Tweet your reply";
     
     // Set profile image
-    // TODO: https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
     self.profileView.image = nil;
 
     [[APIManager shared] getProfilePicture:^(NSString *URLString, NSError *error) {
@@ -58,7 +57,6 @@
 */
 
 - (IBAction)didTapReply:(id)sender {
-//    NSLog(@"%@", self.user.screenName);
     NSString *atUsername = [NSString stringWithFormat:@"%@ ", self.tweet.user.screenName];
     NSString *fullText = [atUsername stringByAppendingString:self.textView.text];
     

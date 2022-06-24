@@ -15,13 +15,12 @@
 
     if (self) {
         self.name = dictionary[@"name"];
-//        self.screenName = dictionary[@"screen_name"];
         self.screenName = [NSString stringWithFormat:@"%@%@", @"@", dictionary[@"screen_name"]];
         self.profilePicture = dictionary[@"profile_image_url_https"];
+        
         // Initialize any other properties
         self.idStr = dictionary[@"id_str"];
         self.tagline = dictionary[@"description"];
-        NSLog(@"%@", dictionary[@"statuses_count"]);
         self.numTweets = [NSString stringWithFormat:@"%@", dictionary[@"statuses_count"]];
         self.numFollowing = [NSString stringWithFormat:@"%@", dictionary[@"friends_count"]];
         self.numFollowers = [NSString stringWithFormat:@"%@", dictionary[@"followers_count"]];
