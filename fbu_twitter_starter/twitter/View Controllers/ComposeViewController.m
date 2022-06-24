@@ -9,7 +9,7 @@
 #import "ComposeViewController.h"
 #import "APIManager.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate> // Implementing character count
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIImageView *profileView;
 - (IBAction)didTapClose:(id)sender;
@@ -22,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Implementing character count
+    self.textView.delegate = self;
     
     // Set profile image
     // TODO: https://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
@@ -38,6 +41,28 @@
             NSLog(@"😫😫😫 Error getting profile picture: %@", error.localizedDescription);
         }
     }];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    
+    // Check the proposed new text character count and then allow/disallow the new text
+    
+    // Set the max character limit
+    int characterLimit = 280;
+
+    // Construct what the new text would be if we allowed the user's latest edit
+    // range has length 0 if referring to current insertion point (1 for each character we wish to delete)
+    NSString *newText = [self.textView.text stringByReplacingCharactersInRange:range withString:text];
+    
+//    NSLog(@"%@", text);
+//    NSLog(@"%@", newText);
+//    NSLog(@"%@", range);
+
+    // TODO: Update character count label
+
+    // Should the new text should be allowed? True/False
+    return newText.length <= characterLimit;
+
 }
 
 /*
